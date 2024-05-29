@@ -13,7 +13,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
-        return view('index', compact('articles'));
+        return view('index', ['articles' => $articles]);
     }
 
     /**
@@ -34,6 +34,7 @@ class ArticleController extends Controller
             'description' => 'required',
             'author' => 'required',
             'image' => 'nullable|image|max:2048',
+            'featured' => 'boolean',
         ]);
 
         $article = new Article($request->all());
@@ -74,6 +75,7 @@ class ArticleController extends Controller
             'description' => 'required',
             'author' => 'required',
             'image' => 'nullable|image|max:2048',
+            'featured' => 'boolean',
         ]);
 
         $article->update($request->all());

@@ -27,6 +27,10 @@
                 <img src="{{ asset('images/' . $article->image_path) }}" class="img-thumbnail mt-2" width="150">
             @endif
         </div>
+        <div class="form-group">
+            <label for="featured">À la une</label>
+            <input type="checkbox" name="featured" id="featured">
+        </div>
         <button type="submit" class="btn btn-primary">{{ isset($article) ? 'Mettre à jour' : 'Créer' }}</button>
     </form>
 </div>

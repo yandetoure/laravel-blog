@@ -3,11 +3,13 @@
 @section('content')
 <div class="container">
     <h1>Articles</h1>
-    <a href="{{ route('articles.create') }}" class="btn btn-primary">Ajouter un Article</a>
+    <a href="{{ route('articles.create') }}" class="btn btn-primary mb-3">Ajouter un Article</a>
+    
+    <h2>Tous les Articles</h2>
     <div class="row">
         @foreach($articles as $article)
-            <div class="col-md-4">
-                <div class="card mb-4">
+            <div class="col-md-4 mb-4">
+                <div class="card">
                     <img src="{{ asset('images/' . $article->image_path) }}" class="card-img-top" alt="{{ $article->title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $article->title }}</h5>
