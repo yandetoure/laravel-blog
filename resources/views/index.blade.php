@@ -2,18 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1>Articles</h1>
     <a href="{{ route('articles.create') }}" class="btn btn-primary mb-12">Ajouter un Article</a>
     
-    <h2>Tous les Articles</h2>
+    <h2 class="titre text-center">Tous les Articles</h2>
     <div class="row">
         @foreach( $yandeh as $article )
-            <div class="col-md-6 mb-4">
+            <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ $article->image_path }}" class="card-img-top" alt="{{ $article->title }}">
+                    <img class="img" src="{{ $article->image_path }}" class="card-img-top" alt="{{ $article->title }}" height="300">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $article->title }}</h5>
-                        <p class="card-text">{{ $article->description }}</p>
+                        <h5 class="card-title text-center">{{ $article->title }}</h5>
                         <p class="card-text"><small class="text-muted">Créé par {{ $article->author }} le {{ $article->created_at->format('d/m/Y') }}</small></p>
                         <a href="{{ route('articles.show', $article->id) }}" class="btn btn-info">Afficher</a>
                         <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-warning">Modifier</a>

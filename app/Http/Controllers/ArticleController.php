@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class ArticleController extends Controller
 {
@@ -21,7 +22,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        return view('create');
     }
 
     /**
@@ -37,16 +38,17 @@ class ArticleController extends Controller
             'featured' => 'boolean',
         ]);
 
-        $article = new Article($request->all());
+        Article::create($request->all());
 
-        if ($request->hasFile('image')) {
+        /*if ($request->hasFile('image')) {
+
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $article->image_path = $imageName;
         }
 
-        $article->save();
-        return redirect()->route('articles.home');
+        $article->save();*/
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -54,7 +56,14 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        return view('articles.show', compact('article'));
+        $article = Article::find($id);
+        return view('show', [
+            'article' => $article
+        ]);
+
+        //  Article::all() => Select * from articles;
+        //  Article::find() => Select * from articles where id = id
+
     }
 
     /**
@@ -62,7 +71,7 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        return view('articles.show', compact('article'));
+        return view('articles.edit', compact('article'));
     }
 
     /**
